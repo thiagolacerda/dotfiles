@@ -15,14 +15,9 @@ function doIt() {
     echo "source ${scripts_dir}/bash_profile" > ~/.bash_profile;
 }
 
-if [ "$1" == "--raw" -o "$1" == "-r" ]; then
-    ./brew.sh;
+read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+echo "";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     doIt;
-else
-    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-    echo "";
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        doIt;
-    fi;
 fi;
 unset doIt;

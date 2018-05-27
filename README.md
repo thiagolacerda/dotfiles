@@ -4,4 +4,10 @@ Bash configuration forked from [mathiasbynens/dotfiles](https://github.com/mathi
 
 ## Install (open file to see options)
 
-./setup.sh
+    ./setup.sh
+
+For a Mac you might want to install homebrew and required packages for the bash configuration in this project. For that,
+    run:
+
+    ./brew.sh
+
