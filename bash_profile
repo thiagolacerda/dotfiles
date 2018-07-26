@@ -11,6 +11,12 @@ for file in ${scripts_path}/{bash_prompt,exports,aliases,functions}; do
 done;
 unset file;
 
+# Load any custom setting for specific env
+for file in ${scripts_path}/custom/*; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 

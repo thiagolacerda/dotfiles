@@ -28,9 +28,13 @@ prompt_symbol="\`[[ \$UID == 0 ]] && echo '#' || echo '$'\`"
 prefix="$BP[\D{%m/%d %T}] $Y\u$GY@$P\h$GY:$B\W"
 suffix="\n$cmd_status $prompt_symbol$W "
 
-if [[ $PS1 && -f /usr/share/git/git-prompt.sh ]]; then
-    source /usr/share/git/completion/git-completion.bash
-    source /usr/share/git/git-prompt.sh
+GIT_PROMPT_PATH="/usr/share/git/git-prompt.sh"
+if [ -n "$1" ]; then
+    GIT_PROMPT_PATH="$1"
+fi;
+
+if [[ $PS1 && -f $GIT_PROMPT_PATH ]]; then
+    source $GIT_PROMPT_PATH
 
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
