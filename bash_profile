@@ -2,7 +2,7 @@
 export PATH="$HOME/bin:$PATH";
 
 # If not running interactively, don't do anything
-#[ -z "$PS1" ] && return
+[ -z "$PS1" ] && return
 
 # Load the shell dotfiles, and then some:
 scripts_path=`dirname ${BASH_SOURCE[0]}`
