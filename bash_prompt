@@ -20,10 +20,24 @@ PP='\[\e[1;38;5;93m\]'
 R='\[\e[1;38;5;196m\]'
 Y='\[\e[1;38;5;214m\]'
 W='\[\e[0m\]'
+BP='\[\e[1;38;5;117m\]'
 
 get_prompt_symbol() {
     [[ $UID == 0 ]] && echo "#" || echo "\$"
 }
+
+cmd_status() {
+    if [ $? = 0 ]; then
+        echo -e '\e[32m\xE2\x9C\x94\e[0m';
+        true;
+    else
+        echo -e '\e[31m\xE2\x9C\x98\e[0m';
+        return $?;
+    fi
+}
+
+prefix="$BP[\D{%m/%d %T}] $Y\u$GY@$P\h$GY:$B\W"
+suffix="\n\$(cmd_status) \$(get_prompt_symbol)$W "
 
 if [[ $PS1 && -f /usr/share/git/git-prompt.sh ]]; then
     source /usr/share/git/completion/git-completion.bash
@@ -33,9 +47,9 @@ if [[ $PS1 && -f /usr/share/git/git-prompt.sh ]]; then
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=true
 
-    export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W\$(__git_ps1 \"$GY|$LB%s\")$GY]$W\$(get_prompt_symbol) "
+    export PS1="$prefix\$(__git_ps1 \"$GY|$LB%s\")$suffix"
 else
-    export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$GY]$W\$(get_prompt_symbol) "
+    export PS1="$prefix$suffix"
 fi
 
 export PS2="\[${Y}\]→ \[${W}\]";
