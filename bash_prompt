@@ -22,7 +22,7 @@ Y='\[\e[1;38;5;214m\]'
 W='\[\e[0m\]'
 BP='\[\e[1;38;5;117m\]'
 
-cmd_status="\`if [ \$? = 0 ]; then echo -e '\[\e[32m\xE2\x9C\x94\[\e[0m'; else echo -e '\[\e[31m\xE2\x9C\x98\[\e[0m'; fi;\`"
+cmd_status="\`if [ \$? = 0 ]; then echo -e '$G\xE2\x9C\x94$W'; else echo -e '$R\xE2\x9C\x98$W'; fi;\`"
 prompt_symbol="\`[[ \$UID == 0 ]] && echo '#' || echo '$'\`"
 
 prefix="$BP[\D{%m/%d %T}] $Y\u$GY@$P\h$GY:$B\W"
