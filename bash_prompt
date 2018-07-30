@@ -22,22 +22,11 @@ Y='\[\e[1;38;5;214m\]'
 W='\[\e[0m\]'
 BP='\[\e[1;38;5;117m\]'
 
-get_prompt_symbol() {
-    [[ $UID == 0 ]] && echo "#" || echo "\$"
-}
-
-cmd_status() {
-    if [ $? = 0 ]; then
-        echo -e '\e[32m\xE2\x9C\x94\e[0m';
-        true;
-    else
-        echo -e '\e[31m\xE2\x9C\x98\e[0m';
-        return $?;
-    fi
-}
+cmd_status="\`if [ \$? = 0 ]; then echo -e '\[\e[32m\xE2\x9C\x94\[\e[0m'; else echo -e '\[\e[31m\xE2\x9C\x98\[\e[0m'; fi;\`"
+prompt_symbol="\`[[ \$UID == 0 ]] && echo '#' || echo '$'\`"
 
 prefix="$BP[\D{%m/%d %T}] $Y\u$GY@$P\h$GY:$B\W"
-suffix="\n\$(cmd_status) \$(get_prompt_symbol)$W "
+suffix="\n$cmd_status $prompt_symbol$W "
 
 if [[ $PS1 && -f /usr/share/git/git-prompt.sh ]]; then
     source /usr/share/git/completion/git-completion.bash
