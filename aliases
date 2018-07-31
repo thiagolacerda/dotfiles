@@ -28,3 +28,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
+
+# Perforce
+alias p4diff='p4 diff -du'
+
+alias vim='nvim'
