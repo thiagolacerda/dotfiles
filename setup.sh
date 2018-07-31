@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-scripts_dir=`dirname ${BASH_SOURCE}`;
+scripts_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cd "${scripts_dir}";
 
 #git pull origin master;
