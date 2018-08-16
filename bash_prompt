@@ -25,7 +25,7 @@ BP='\[\e[1;38;5;117m\]'
 cmd_status="\`if [ \$? = 0 ]; then echo -e '$G\xE2\x9C\x94$W'; else echo -e '$R\xE2\x9C\x98$W'; fi;\`"
 prompt_symbol="\`[[ \$UID == 0 ]] && echo '#' || echo '$'\`"
 
-prefix="$BP[\D{%m/%d %T}] $Y\u$GY@$P\h$GY:$B\W"
+prefix="$BP[\D{%m/%d %T}] $Y\u$GY@$P\h$GY:$B\W$W"
 suffix="\n$cmd_status $prompt_symbol$W "
 
 GIT_PROMPT_PATH="/usr/share/git/git-prompt.sh"
@@ -40,7 +40,7 @@ if [[ $PS1 && -f $GIT_PROMPT_PATH ]]; then
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=true
 
-    export PS1="$prefix\$(__git_ps1 \"$GY|$LB%s\")$suffix"
+    export PS1="$prefix\$(__git_ps1 \"$GY|$LB%s\")$W$suffix"
 else
     export PS1="$prefix$suffix"
 fi
